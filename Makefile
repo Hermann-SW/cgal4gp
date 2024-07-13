@@ -7,13 +7,12 @@
 TARGET = cgal4gp
 
 CC         = /usr/bin/g++
-#CPPFLAGS   = -I. -I/usr/local/include -fPIC -Wall -pedantic -Wextra
-CPPFLAGS   = -O3 -ffp-contract=off -fno-strict-aliasing -fPIC -Wall -pedantic -Wextra
+CPPFLAGS   = -O3 -ffp-contract=off -fno-strict-aliasing -fPIC -Wall -pedantic -Wextra -Wno-psabi
 LD         = /usr/bin/g++
 LDFLAGS    = -O3 -Wall -ffp-contract=off -fno-strict-aliasing    -Wl,--export-dynamic 
 MODLD      = /usr/bin/g++
 MODLDFLAGS = -shared -Wl,-shared 
-EXTRAMODLDFLAGS = -lc -lm -L/usr/local/lib # -lpari
+EXTRAMODLDFLAGS = -lc -lm -lgmp
 
 RM = rm -f
 
