@@ -1,26 +1,19 @@
 # make all will create
 #  libcgal4gp.so (to be used by "install" under GP)
 #
-# Under GP: install("width", "GG", "f", "./libcgal4gp.so") enables
-# you to subsequently use f(n,M) to call width(n,M)
+# Under GP: install("get_squared_width", "vG&&", , "./libcgal4gp.so")
+# enables you to subsequently use get_squared_width(points, num, denom) in GP
 
 TARGET = cgal4gp
 
-CFLAGS     = -O3 -Wall -ffp-contract=off -fno-strict-aliasing
-EXTRACFLAGS=
-
 CC         = /usr/bin/g++
-CPPFLAGS   = -I. -I/usr/local/include -fPIC
-LD         = /usr/bin/gcc
+#CPPFLAGS   = -I. -I/usr/local/include -fPIC -Wall -pedantic -Wextra
+CPPFLAGS   = -O3 -ffp-contract=off -fno-strict-aliasing -fPIC -Wall -pedantic -Wextra
+LD         = /usr/bin/g++
 LDFLAGS    = -O3 -Wall -ffp-contract=off -fno-strict-aliasing    -Wl,--export-dynamic 
-MODLD      = /usr/bin/gcc
-MODLDFLAGS = -shared  $(CFLAGS) $(DLCFLAGS) -Wl,-shared 
+MODLD      = /usr/bin/g++
+MODLDFLAGS = -shared -Wl,-shared 
 EXTRAMODLDFLAGS = -lc -lm -L/usr/local/lib # -lpari
-EXTRALIBS  =
-
-RUNPTH     = -Wl,-rpath "/usr/local/lib"
-DLCFLAGS   = -fPIC
-LIBS       = -lm -L/usr/local/lib
 
 RM = rm -f
 
@@ -34,9 +27,7 @@ all: $(ALL)
 dynlib: $(DYN)
 
 $(DYN): $(OBJS)
-	$(MODLD) -o $@ $(MODLDFLAGS) $(EXTRACFLAGS) $(OBJS) $(EXTRAMODLDFLAGS)
+	$(MODLD) -o $@ $(MODLDFLAGS) $(OBJS) $(EXTRAMODLDFLAGS)
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $(EXTRACFLAGS) $(CPPFLAGS) $(DLCFLAGS) $<
 clean:
 	-$(RM) *.o $(ALL)
