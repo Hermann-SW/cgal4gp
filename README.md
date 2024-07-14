@@ -26,7 +26,7 @@ $
 
 ```
 $ cat simple.gp 
-ead("cgal4gp.gp");
+read("cgal4gp.gp");
 
 points=[[1,0,0],[2,-1,0],[2,0,-1],[3,0,0],[2,1,0],[2,0,1]];
 Width(points);
