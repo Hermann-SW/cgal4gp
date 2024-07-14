@@ -93,4 +93,4 @@ Raspberry Pi OS      | ARM       | Cortex-A76    | g++      | (Debian 12.2.0-14)
 Android 13           | Qualcomm  | Kryo-460      | clang++  | 17.0.4
 
 I normally use g++, on Android clang++ seems to be standard C++ compiler:  
-![res/Screenshot_20240714-134633.part.50%.png](res/Screenshot_20240714-134633.part.50%.png)
+![res/Screenshot_20240714-134633.part.50pc.png](res/Screenshot_20240714-134633.part.50pc.png)
