@@ -58,13 +58,6 @@ Width(GEN points) {
 }
 
 extern "C"
-int
-get_number_of_optimal_solutions() {
-    assert(_simplex != NULL);
-    return _simplex->get_number_of_optimal_solutions();
-}
-
-extern "C"
 void
 get_squared_width(GEN *num, GEN *denom) {
     _RT wnum, wdenom;
@@ -74,6 +67,24 @@ get_squared_width(GEN *num, GEN *denom) {
 
     *num = mpz2GEN(wnum.mpz());
     *denom = mpz2GEN(wdenom.mpz());
+}
+
+extern "C"
+GEN
+get_build_direction() {
+    assert(_simplex != NULL);
+    _Vector_3 _dir = _simplex->get_build_direction();
+
+    return mkvec3(
+               mkfrac(
+                   mpz2GEN(_dir[0].num.mpz()),
+                   mpz2GEN(_dir[0].den.mpz())),
+               mkfrac(
+                   mpz2GEN(_dir[1].num.mpz()),
+                   mpz2GEN(_dir[1].den.mpz())),
+               mkfrac(
+                   mpz2GEN(_dir[2].num.mpz()),
+                   mpz2GEN(_dir[2].den.mpz())));
 }
 
 extern "C"
@@ -105,3 +116,11 @@ get_all_build_directions(GEN *dir) {
 
     *dir = ret;
 }
+
+extern "C"
+int
+get_number_of_optimal_solutions() {
+    assert(_simplex != NULL);
+    return _simplex->get_number_of_optimal_solutions();
+}
+

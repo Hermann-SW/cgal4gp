@@ -10,9 +10,12 @@ get_squared_width(num,denom);
 print(num,"/",denom);
 num/denom
 
-print("- get_number_of_optimal_solutions()");
-get_number_of_optimal_solutions()
+print("- get_build_direction()");
+get_build_direction()
 
 print("- get_all_build_directions(dir)");
 get_all_build_directions(dir);
 dir
+
+print("- get_number_of_optimal_solutions()");
+get_number_of_optimal_solutions()
