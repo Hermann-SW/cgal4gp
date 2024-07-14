@@ -71,6 +71,26 @@ get_squared_width(GEN *num, GEN *denom) {
 
 extern "C"
 void
+get_width_planes(GEN *e1, GEN *e2) {
+    _RT a, b, c, d, k;
+
+    assert(_simplex != NULL);
+    _simplex->get_width_coefficients(a, b, c, d, k);
+
+    *e1 = mkvec4(
+              mpz2GEN(a.mpz()),
+              mpz2GEN(b.mpz()),
+              mpz2GEN(c.mpz()),
+              mpz2GEN(d.mpz()));
+    *e2 = mkvec4(
+              mpz2GEN(a.mpz()),
+              mpz2GEN(b.mpz()),
+              mpz2GEN(c.mpz()),
+              mpz2GEN(k.mpz()));
+}
+
+extern "C"
+void
 get_width_coefficients(GEN *A, GEN *B, GEN *C, GEN *D, GEN *K) {
     _RT a, b, c, d, k;
 

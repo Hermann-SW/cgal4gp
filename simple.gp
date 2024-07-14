@@ -10,6 +10,10 @@ get_squared_width(num,denom);
 print(num,"/",denom);
 num/denom
 
+print("- get_width_planes(e1,e2)");
+get_width_planes(e1,e2);
+print(e1," ",e2);
+
 print("- get_width_coefficients(A,B,C,D,K)");
 get_width_coefficients(A,B,C,D,K);
 print(A," ",B," ",C," ",D," ",K);

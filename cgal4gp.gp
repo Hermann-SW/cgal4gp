@@ -3,6 +3,7 @@
 install("Width",                           "vG",     , "./libcgal4gp.so");
 
 install("get_squared_width",               "v&&",    , "./libcgal4gp.so");
+install("get_width_planes",                "v&&",    , "./libcgal4gp.so");
 install("get_width_coefficients",          "v&&&&&", , "./libcgal4gp.so");
 install("get_build_direction",             "m",      , "./libcgal4gp.so");
 install("get_all_build_directions",        "v&",     , "./libcgal4gp.so");

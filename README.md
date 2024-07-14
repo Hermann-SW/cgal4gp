@@ -6,8 +6,10 @@ See sections [prerequisites](#prerequisites) and [tested environments](#tested-e
 [JSCAD app link](https://jscad.app/#data:application/gzip;base64,H4sIAMXYkmYAA1XPPWvDMBAG4F2/4rbYIFt206lQKHTp2N14UJWLo2LpVH20ocb/vYpqQiI06F4exHtCwClGF56EmHQ8pY9WkRFv6I20tgk/Qk1yfpwcE4IpsiHCZ1DyAM/g8Stpj9XupSTC0AFnbaddvcEFJiSzhzXjQtrLjNFrDFeiaCavf/FGlSgwdkxWRU0WjNS2ctJLE2pYGICLIeth6Dl0+Y4chgcOzWXc3jlu+pFnu51hf2fvaT+OLFOPMXl7rVQNHe94z/M//5u0R0/mnbSN4ZXsN56rXKSu2cpYXj7N2OLZkS/lltIaVvYH5sr/umEBAAA=) illustrating the demo:  
 ![res/simple.gp.png](res/simple.gp.png)
 
-Vertical prototype, now with 6 functions from CGAL:
+Vertical prototype, now with 7 functions from CGAL:
 ```
+$ make clean
+rm -f *.o libcgal4gp.so
 $ make
 g++  -O3 -ffp-contract=off -fno-strict-aliasing -fPIC -Wall -pedantic -Wextra -Wno-psabi  -c -o cgal4gp.o cgal4gp.cpp
 /usr/bin/g++ -o libcgal4gp.so -shared -Wl,-shared  cgal4gp.o -lc -lm -lgmp
@@ -16,6 +18,8 @@ gp -q < simple.gp
 - get_squared_width(num,denom)
 67108864/50331648
 4/3
+- get_width_planes(e1,e2)
+[32768, 32768, 32768, -98304] [32768, 32768, 32768, -32768]
 - get_width_coefficients(A,B,C,D,K)
 32768 32768 32768 -98304 -32768
 width-plane e1(e2) is given by the equation Ax+By+Cz+D(K)=0
@@ -42,6 +46,10 @@ get_squared_width(num,denom);
 print(num,"/",denom);
 num/denom
 
+print("- get_width_planes(e1,e2)");
+get_width_planes(e1,e2);
+print(e1," ",e2);
+
 print("- get_width_coefficients(A,B,C,D,K)");
 get_width_coefficients(A,B,C,D,K);
 print(A," ",B," ",C," ",D," ",K);
@@ -67,6 +75,7 @@ https://doc.cgal.org/latest/Polytope_distance_d/classCGAL_1_1Width__3.html
 install("Width",                           "vG",     , "./libcgal4gp.so");
 
 install("get_squared_width",               "v&&",    , "./libcgal4gp.so");
+install("get_width_planes",                "v&&",    , "./libcgal4gp.so");
 install("get_width_coefficients",          "v&&&&&", , "./libcgal4gp.so");
 install("get_build_direction",             "m",      , "./libcgal4gp.so");
 install("get_all_build_directions",        "v&",     , "./libcgal4gp.so");
