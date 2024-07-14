@@ -1,19 +1,18 @@
 #include <pari/pari.h>
 
-
 #include <CGAL/Homogeneous.h>
 #include <CGAL/Width_default_traits_3.h>
 #include <CGAL/Width_3.h>
-#include <iostream>
+#include <cassert>
 #include <vector>
 
-typedef CGAL::Gmpz                            RT;
+typedef CGAL::Gmpz                            _RT;
 
-typedef CGAL::Homogeneous<RT>                 Kernel;
-typedef Kernel::Point_3                       Point_3;
-typedef Kernel::Plane_3                       Plane_3;
-typedef CGAL::Width_default_traits_3<Kernel>  Width_traits;
-typedef CGAL::Width_3<Width_traits>           Width;
+typedef CGAL::Homogeneous<_RT>                _Kernel;
+typedef _Kernel::Point_3                      _Point_3;
+typedef _Kernel::Plane_3                      _Plane_3;
+typedef CGAL::Width_default_traits_3<_Kernel> _Width_traits;
+typedef CGAL::Width_3<_Width_traits>          _Width;
 
 
 // from 2007 posting: https://pari.math.u-bordeaux.fr/archives/pari-users-0712/msg00001.html
@@ -36,28 +35,43 @@ mpz2GEN(mpz_t X) {
 }
 
 
+_Width *_simplex = NULL;
+
 extern "C"
 void
-get_squared_width(GEN points, GEN *num, GEN *denom)
-{
-    std::vector<Point_3> pts;
+Width(GEN points) {
+    std::vector<_Point_3> pts;
     mpz_t x, y, z;
     mpz_init(x);
     mpz_init(y);
     mpz_init(z);
-    for(int i=1; i<lg(points); ++i) {
-        GEN2mpz(x, gel(gel(points,i),1));
-        GEN2mpz(y, gel(gel(points,i),2));
-        GEN2mpz(z, gel(gel(points,i),3));
-        pts.push_back(Point_3(x, y, z));
+    for (int i = 1; i < lg(points); ++i) {
+        GEN2mpz(x, gel(gel(points, i), 1));
+        GEN2mpz(y, gel(gel(points, i), 2));
+        GEN2mpz(z, gel(gel(points, i), 3));
+        pts.push_back(_Point_3(x, y, z));
     }
 
-    // Compute width of simplex
-    Width simplex(pts.begin(), pts.end());
+    delete _simplex;
+    _simplex = new _Width(pts.begin(), pts.end());
+}
 
-    RT wnum, wdenom;
-    simplex.get_squared_width(wnum, wdenom);
+extern "C"
+int
+get_number_of_optimal_solutions() {
+    assert(_simplex != NULL);
+    return _simplex->get_number_of_optimal_solutions();
+}
+
+extern "C"
+void
+get_squared_width(GEN *num, GEN *denom) {
+    _RT wnum, wdenom;
+
+    assert(_simplex != NULL);
+    _simplex->get_squared_width(wnum, wdenom);
 
     *num = mpz2GEN(wnum.mpz());
     *denom = mpz2GEN(wdenom.mpz());
 }
+

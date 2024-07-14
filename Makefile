@@ -28,5 +28,11 @@ dynlib: $(DYN)
 $(DYN): $(OBJS)
 	$(MODLD) -o $@ $(MODLDFLAGS) $(OBJS) $(EXTRAMODLDFLAGS)
 
+cpplint: cgal4gp.cpp
+	cpplint --filter=-legal/copyright $<
+
+cppcheck: cgal4gp.cpp
+	cppcheck --enable=all --suppress=missingIncludeSystem $< --check-config
+
 clean:
 	-$(RM) *.o $(ALL)
