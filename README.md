@@ -92,5 +92,5 @@ Ubuntu 22.04         | Intel     | Celeron J4105 | g++      | (Ubuntu 11.4.0-1ub
 Raspberry Pi OS      | ARM       | Cortex-A76    | g++      | (Debian 12.2.0-14)
 Android 13           | Qualcomm  | Kryo-460      | clang++  | 17.0.4
 
-I normally use g++, on Android clang++ seems to be standard C++ compiler:  
+On Android clang++ seems to be standard C++ compiler, g++ is just symbolic link to it:  
 ![res/Screenshot_20240714-134633.part.50pc.png](res/Screenshot_20240714-134633.part.50pc.png)
