@@ -10,6 +10,11 @@ get_squared_width(num,denom);
 print(num,"/",denom);
 num/denom
 
+print("- get_width_coefficients(A,B,C,D,K)");
+get_width_coefficients(A,B,C,D,K);
+print(A," ",B," ",C," ",D," ",K);
+print("width-plane e1(e2) is given by the equation Ax+By+Cz+D(K)=0"); 
+
 print("- get_build_direction()");
 get_build_direction()
 

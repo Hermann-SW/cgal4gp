@@ -70,6 +70,21 @@ get_squared_width(GEN *num, GEN *denom) {
 }
 
 extern "C"
+void
+get_width_coefficients(GEN *A, GEN *B, GEN *C, GEN *D, GEN *K) {
+    _RT a, b, c, d, k;
+
+    assert(_simplex != NULL);
+    _simplex->get_width_coefficients(a, b, c, d, k);
+
+    *A = mpz2GEN(a.mpz());
+    *B = mpz2GEN(b.mpz());
+    *C = mpz2GEN(c.mpz());
+    *D = mpz2GEN(d.mpz());
+    *K = mpz2GEN(k.mpz());
+}
+
+extern "C"
 GEN
 get_build_direction() {
     assert(_simplex != NULL);
