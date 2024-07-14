@@ -10,6 +10,7 @@ typedef CGAL::Gmpz                            _RT;
 
 typedef CGAL::Homogeneous<_RT>                _Kernel;
 typedef _Kernel::Point_3                      _Point_3;
+typedef _Kernel::Vector_3                     _Vector_3;
 typedef _Kernel::Plane_3                      _Plane_3;
 typedef CGAL::Width_default_traits_3<_Kernel> _Width_traits;
 typedef CGAL::Width_3<_Width_traits>          _Width;
@@ -75,3 +76,32 @@ get_squared_width(GEN *num, GEN *denom) {
     *denom = mpz2GEN(wdenom.mpz());
 }
 
+extern "C"
+void
+get_all_build_directions(GEN *dir) {
+    std::vector<_Vector_3> _dir;
+
+    assert(_simplex != NULL);
+    _simplex->get_all_build_directions(_dir);
+
+    GEN ret = cgetg(1, t_VEC);
+
+    for (std::vector<_Vector_3>::iterator it = _dir.begin();
+         it != _dir.end(); it++
+    ) {
+        ret = vec_append(
+                  ret,
+                  mkvec3(
+                      mkfrac(
+                          mpz2GEN(((*it)[0]).num.mpz()),
+                          mpz2GEN(((*it)[0]).den.mpz())),
+                      mkfrac(
+                          mpz2GEN(((*it)[1]).num.mpz()),
+                          mpz2GEN(((*it)[1]).den.mpz())),
+                      mkfrac(
+                          mpz2GEN(((*it)[2]).num.mpz()),
+                          mpz2GEN(((*it)[2]).den.mpz()))));
+    }
+
+    *dir = ret;
+}

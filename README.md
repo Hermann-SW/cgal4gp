@@ -6,7 +6,7 @@ See sections [prerequisites](#prerequisites) and [tested environments](#tested-e
 [JSCAD app link](https://jscad.app/#data:application/gzip;base64,H4sIAMXYkmYAA1XPPWvDMBAG4F2/4rbYIFt206lQKHTp2N14UJWLo2LpVH20ocb/vYpqQiI06F4exHtCwClGF56EmHQ8pY9WkRFv6I20tgk/Qk1yfpwcE4IpsiHCZ1DyAM/g8Stpj9XupSTC0AFnbaddvcEFJiSzhzXjQtrLjNFrDFeiaCavf/FGlSgwdkxWRU0WjNS2ctJLE2pYGICLIeth6Dl0+Y4chgcOzWXc3jlu+pFnu51hf2fvaT+OLFOPMXl7rVQNHe94z/M//5u0R0/mnbSN4ZXsN56rXKSu2cpYXj7N2OLZkS/lltIaVvYH5sr/umEBAAA=) illustrating the demo:  
 ![res/simple.gp.png](res/simple.gp.png)
 
-Vertical prototype, now with 3 functions from CGAL:
+Vertical prototype, now with 4 functions from CGAL:
 ```
 $ make
 g++  -O3 -ffp-contract=off -fno-strict-aliasing -fPIC -Wall -pedantic -Wextra -Wno-psabi  -c -o cgal4gp.o cgal4gp.cpp
@@ -18,6 +18,8 @@ gp -q < simple.gp
 4/3
 - get_number_of_optimal_solutions()
 8
+- get_all_build_directions(dir)
+[[4096/1, 4096/1, 4096/1], [4096/1, -4096/1, 4096/1], [-4096/1, -4096/1, 4096/1], [-4096/1, 4096/1, 4096/1], [-4096/1, 4096/1, -4096/1], [4096/1, 4096/1, -4096/1], [4096/1, -4096/1, -4096/1], [-4096/1, -4096/1, -4096/1]]
 $ 
 ```
 
@@ -26,14 +28,21 @@ $ cat simple.gp
 read("cgal4gp.gp");
 
 points=[[1,0,0],[2,-1,0],[2,0,-1],[3,0,0],[2,1,0],[2,0,1]];
-Width(points);
+
 print("- Width(",points,")");
-get_squared_width(num,denom);
+Width(points);
+
 print("- get_squared_width(num,denom)");
+get_squared_width(num,denom);
 print(num,"/",denom);
 num/denom
+
 print("- get_number_of_optimal_solutions()");
 get_number_of_optimal_solutions()
+
+print("- get_all_build_directions(dir)");
+get_all_build_directions(dir);
+dir
 $ 
 ```
 
@@ -47,10 +56,11 @@ install("Width",                           "vG",  , "./libcgal4gp.so");
 
 install("get_squared_width",               "v&&", , "./libcgal4gp.so");
 install("get_number_of_optimal_solutions", "i",   , "./libcgal4gp.so");
+install("get_all_build_directions",        "v&",  , "./libcgal4gp.so");
 $ 
 ```
 
-Code cleanup done with help of two new Makefile targets:  
+Code cleanup done with help of these two Makefile targets:  
 ```
 $ make cpplint
 cpplint --filter=-legal/copyright cgal4gp.cpp
