@@ -36,6 +36,14 @@ mpz2GEN(mpz_t X) {
 }
 
 
+// https://pari.math.u-bordeaux.fr/archives/pari-users-2407/msg00041.html
+GEN
+mkfrac_or_int(GEN a, GEN b)
+{
+  return equali1(b) ? a: mkfrac(a,b);
+}
+
+
 _Width *_simplex = NULL;
 
 extern "C"
@@ -111,13 +119,13 @@ get_build_direction() {
     _Vector_3 _dir = _simplex->get_build_direction();
 
     return mkvec3(
-               mkfrac(
+               mkfrac_or_int(
                    mpz2GEN(_dir[0].num.mpz()),
                    mpz2GEN(_dir[0].den.mpz())),
-               mkfrac(
+               mkfrac_or_int(
                    mpz2GEN(_dir[1].num.mpz()),
                    mpz2GEN(_dir[1].den.mpz())),
-               mkfrac(
+               mkfrac_or_int(
                    mpz2GEN(_dir[2].num.mpz()),
                    mpz2GEN(_dir[2].den.mpz())));
 }
@@ -138,13 +146,13 @@ get_all_build_directions(GEN *dir) {
         ret = vec_append(
                   ret,
                   mkvec3(
-                      mkfrac(
+                      mkfrac_or_int(
                           mpz2GEN(((*it)[0]).num.mpz()),
                           mpz2GEN(((*it)[0]).den.mpz())),
-                      mkfrac(
+                      mkfrac_or_int(
                           mpz2GEN(((*it)[1]).num.mpz()),
                           mpz2GEN(((*it)[1]).den.mpz())),
-                      mkfrac(
+                      mkfrac_or_int(
                           mpz2GEN(((*it)[2]).num.mpz()),
                           mpz2GEN(((*it)[2]).den.mpz()))));
     }
