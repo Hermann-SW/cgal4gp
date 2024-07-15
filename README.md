@@ -135,7 +135,7 @@ In 1850 Dirichlet proposed a method for determining a ternary quadratic form ```
 
 Initial code drop, work in progress ...
 
-In case of no vstart, width of lattice sphere for n is computed:  
+In case of no vstart, width of lattice sphere for n (blue) is computed:  
 ```
 $ p=5 q=13 gp -q < tqf_width.gp 
 n=65
@@ -146,7 +146,9 @@ optimal solutions: 32
 $ 
 ```
 
-Otherwise width of linear transformation G applied to lattice sphere is computed:  
+![res/n_eq_65.lattice_sphere.png](res/n_eq_65.lattice_sphere.png)  
+
+Otherwise width of linear transformation G applied to lattice sphere (green) is computed:  
 ```
 $ dbg=1 p=5 q=13 vstart=1 gp -q < tqf_width.gp 
 n=65
