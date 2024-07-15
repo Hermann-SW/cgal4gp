@@ -1,7 +1,7 @@
 # cgal4gp
 Make CGAL (Computational Geometry Algorithms Library) functionality available for PARI/GP.
 
-See sections [prerequisites](#prerequisites) and [tested environments](#tested-environments) below.
+See sections [prerequisites](#prerequisites) and [tested environments](#tested-environments) below. A first application is described in section [ternary quadratic form width](#ternary-quadratic-form-width).
 
 [JSCAD app link](https://jscad.app/#data:application/gzip;base64,H4sIAMXYkmYAA1XPPWvDMBAG4F2/4rbYIFt206lQKHTp2N14UJWLo2LpVH20ocb/vYpqQiI06F4exHtCwClGF56EmHQ8pY9WkRFv6I20tgk/Qk1yfpwcE4IpsiHCZ1DyAM/g8Stpj9XupSTC0AFnbaddvcEFJiSzhzXjQtrLjNFrDFeiaCavf/FGlSgwdkxWRU0WjNS2ctJLE2pYGICLIeth6Dl0+Y4chgcOzWXc3jlu+pFnu51hf2fvaT+OLFOPMXl7rVQNHe94z/M//5u0R0/mnbSN4ZXsN56rXKSu2cpYXj7N2OLZkS/lltIaVvYH5sr/umEBAAA=) illustrating the demo:  
 ![res/simple.gp.png](res/simple.gp.png)
@@ -127,3 +127,37 @@ Android 13           | Qualcomm  | Kryo-460      | clang++  | 17.0.4
 
 On Android clang++ seems to be standard C++ compiler, g++ is just symbolic link to it:  
 ![res/termux.make.40pc.png](res/termux.make.40pc.png)
+
+
+## ternary quadratic form width
+
+In 1850 Dirichlet proposed a method for determining a ternary quadratic form ```Q``` for mumber ```n```, and matrix ```G``` with ```G~*Q*G==matdiagonal([1,1,1])```. Then ```norml2(G^-1*[0,0,1]~)==n```, and a sum of 3 squares representation for ```n``` is computed.
+
+Initial code drop, work in progress ...
+
+In case of no vstart, width of lattice sphere for n is computed:  
+```
+$ p=5 q=13 gp -q < tqf_width.gp 
+n=65
+#S=96
+squared width: 676/3 [102072582144/452984832]
+build direction: [-12288/1, -12288/1, -12288/1]
+optimal solutions: 32
+$ 
+```
+
+Otherwise width of linear transformation G applied to lattice sphere is computed:  
+```
+$ dbg=1 p=5 q=13 vstart=1 gp -q < tqf_width.gp 
+n=65
+next vstart: 3
+ Q=[10, 111, 1; 111, 1234, 0; 1, 0, 65]
+ G=[-67, -189, -200; 6, 17, 18; 1, 3, 3]
+ G^-1=[-3, -33, -2; 0, -1, 6; 1, 12, -5]
+#S=96
+squared width: 2500/12669 [167772160000/850202198016]
+build direction: [81920/1, 917504/1, -40960/1]
+optimal solutions: 8
+$ 
+```
+
