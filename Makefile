@@ -1,8 +1,8 @@
 # make all will create
 #  libcgal4gp.so (to be used by "install" under GP)
 #
-# Under GP: install("get_squared_width", "vG&&", , "./libcgal4gp.so")
-# enables you to subsequently use get_squared_width(points, num, denom) in GP
+# Under GP: install("get_squared_width", "v&&", , "./libcgal4gp.so")
+# enables you to subsequently use get_squared_width(num, denom) in GP
 
 TARGET = cgal4gp
 
