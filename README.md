@@ -163,3 +163,6 @@ optimal solutions: 8
 $ 
 ```
 
+## cgal4gp work originated new CGAL issue(s) 
+
+* https://github.com/CGAL/cgal/issues/8358
