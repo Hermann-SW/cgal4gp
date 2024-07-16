@@ -117,6 +117,7 @@ GEN
 get_build_direction() {
     assert(_simplex != NULL);
     _Vector_3 _dir = _simplex->get_build_direction();
+
     return mkvec3(
                mkfrac_or_int(
                    mpz2GEN(_dir[0].num.mpz()),
