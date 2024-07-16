@@ -141,8 +141,9 @@ $ p=5 q=13 gp -q < tqf_width.gp
 n=65
 #S=96
 squared width: 676/3 [102072582144/452984832]
-build direction: [-12288/1, -12288/1, -12288/1]
+build direction: [-12288, -12288, -12288]
 optimal solutions: 32
+workaround(all build directions): [[1, -1, -1], [1, -1, 1], [1, 1, -1], [1, 1, 1]]
 $ 
 ```
 
@@ -158,8 +159,9 @@ next vstart: 3
  G^-1=[-3, -33, -2; 0, -1, 6; 1, 12, -5]
 #S=96
 squared width: 2500/12669 [167772160000/850202198016]
-build direction: [81920/1, 917504/1, -40960/1]
+build direction: [81920, 917504, -40960]
 optimal solutions: 8
+workaround(all build directions): [[10, 112, -5]]
 $ 
 ```
 

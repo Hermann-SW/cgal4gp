@@ -80,5 +80,7 @@ get_tqf(n,vstart)={
         print("squared width: ",num/denom," [",num,"/",denom,"]");
         print("build direction: ",get_build_direction());
         print("optimal solutions: ",get_number_of_optimal_solutions());
+        get_all_build_directions(dir);
+        print("workaround(all build directions): ", Set([d/gcd(d)*if(d[1]<0,-1,1) | d<-dir]));
     )
 }
