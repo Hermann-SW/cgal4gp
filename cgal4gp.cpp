@@ -30,7 +30,7 @@ GEN
 mpz2GEN(mpz_t X) {
     int64_t l = X->_mp_size, lx = labs(l)+2;
     GEN x = cgeti(lx);
-    x[1] = evalsigne(l > 0? 1: -1) | evallgefint(lx);
+    x[1] = evalsigne(l > 0? 1: (l<0?-1:0)) | evallgefint(lx);
     for (int i = 2; i < lx; i++) x[i] = X->_mp_d[i-2];
     return x;
 }
@@ -117,7 +117,6 @@ GEN
 get_build_direction() {
     assert(_simplex != NULL);
     _Vector_3 _dir = _simplex->get_build_direction();
-
     return mkvec3(
                mkfrac_or_int(
                    mpz2GEN(_dir[0].num.mpz()),
