@@ -40,31 +40,33 @@ read("cgal4gp.gp");
 points=[[1,0,0],[2,-1,0],[2,0,-1],[3,0,0],[2,1,0],[2,0,1]];
 
 print("- Width(",points,")");
-Width(points);
+CGAL_Width(points);
 
 print("- get_squared_width(num,denom)");
-get_squared_width(num,denom);
+CGAL_get_squared_width(num,denom);
 print(num,"/",denom);
 num/denom
 
 print("- get_width_planes(e1,e2)");
-get_width_planes(e1,e2);
+CGAL_get_width_planes(e1,e2);
 print(e1," ",e2);
 
 print("- get_width_coefficients(A,B,C,D,K)");
-get_width_coefficients(A,B,C,D,K);
+CGAL_get_width_coefficients(A,B,C,D,K);
 print(A," ",B," ",C," ",D," ",K);
 print("width-plane e1(e2) is given by the equation Ax+By+Cz+D(K)=0"); 
 
 print("- get_build_direction()");
-get_build_direction()
+CGAL_get_build_direction()
 
 print("- get_all_build_directions(dir)");
-get_all_build_directions(dir);
+CGAL_get_all_build_directions(dir);
 dir
 
 print("- get_number_of_optimal_solutions()");
-get_number_of_optimal_solutions()
+CGAL_get_number_of_optimal_solutions()
+
+print("workaround(all build directions): ", Set([d/gcd(d)*if(d[1]<0,-1,1) | d<-dir]));
 ```
 
 CGAL doc on pointset width related functions, with detailed problem description:  
@@ -74,14 +76,14 @@ https://doc.cgal.org/latest/Polytope_distance_d/classCGAL_1_1Width__3.html
 ```
 \\ https://doc.cgal.org/latest/Polytope_distance_d/classCGAL_1_1Width__3.html
 \\
-install("Width",                           "vG",     , "./libcgal4gp.so");
+install("Width",                           "vG",     "CGAL_Width",                           "./libcgal4gp.so");
 
-install("get_squared_width",               "v&&",    , "./libcgal4gp.so");
-install("get_width_planes",                "v&&",    , "./libcgal4gp.so");
-install("get_width_coefficients",          "v&&&&&", , "./libcgal4gp.so");
-install("get_build_direction",             "m",      , "./libcgal4gp.so");
-install("get_all_build_directions",        "v&",     , "./libcgal4gp.so");
-install("get_number_of_optimal_solutions", "i",      , "./libcgal4gp.so");
+install("get_squared_width",               "v&&",    "CGAL_get_squared_width",               "./libcgal4gp.so");
+install("get_width_planes",                "v&&",    "CGAL_get_width_planes",                "./libcgal4gp.so");
+install("get_width_coefficients",          "v&&&&&", "CGAL_get_width_coefficients",          "./libcgal4gp.so");
+install("get_build_direction",             "m",      "CGAL_get_build_direction",             "./libcgal4gp.so");
+install("get_all_build_directions",        "v&",     "CGAL_get_all_build_directions",        "./libcgal4gp.so");
+install("get_number_of_optimal_solutions", "i",      "CGAL_get_number_of_optimal_solutions", "./libcgal4gp.so");
 ```
 
 Code cleanup done with help of these two Makefile targets:  

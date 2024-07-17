@@ -75,12 +75,12 @@ get_tqf(n,vstart)={
             S=[G*y~|y<-S]);
 
         print("#S=",#S);
-        Width(S);
-        get_squared_width(num,denom);
+        CGAL_Width(S);
+        CGAL_get_squared_width(num,denom);
         print("squared width: ",num/denom," [",num,"/",denom,"]");
-        print("build direction: ",get_build_direction());
-        print("optimal solutions: ",get_number_of_optimal_solutions());
-        get_all_build_directions(dir);
+        print("build direction: ",CGAL_get_build_direction());
+        print("optimal solutions: ",CGAL_get_number_of_optimal_solutions());
+        CGAL_get_all_build_directions(dir);
         print("workaround(all build directions): ", Set([d/gcd(d)*if(d[1]<0,-1,1) | d<-dir]));
     )
 }
