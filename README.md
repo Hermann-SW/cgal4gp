@@ -30,9 +30,6 @@ width-plane e1(e2) is given by the equation Ax+By+Cz+D(K)=0
 - get_number_of_optimal_solutions()
 8
 workaround(all build directions): [[1, -1, -1], [1, -1, 1], [1, 1, -1], [1, 1, 1]]
-- convex_hull_3([[1, 0, 0], [2, -1, 0], [2, 0, -1], [3, 0, 0], [2, 1, 0], [2, 0, 1]])
-[6, 12, 24, 8]
-#points, #edges, #half_edges and #faces of convex hull
 $ 
 ```
 
@@ -70,10 +67,6 @@ print("- get_number_of_optimal_solutions()");
 CGAL_get_number_of_optimal_solutions()
 
 print("workaround(all build directions): ", Set([d/gcd(d)*if(d[1]<0,-1,1) | d<-dir]));
-
-print("- convex_hull_3(", points, ")");
-ret = CGAL_convex_hull_3(points)
-print("#points, #edges, #half_edges and #faces of convex hull");
 ```
 
 CGAL doc on pointset width related functions, with detailed problem description:  
@@ -91,8 +84,6 @@ install("get_width_coefficients",          "v&&&&&", "CGAL_get_width_coefficient
 install("get_build_direction",             "m",      "CGAL_get_build_direction",             "./libcgal4gp.so");
 install("get_all_build_directions",        "v&",     "CGAL_get_all_build_directions",        "./libcgal4gp.so");
 install("get_number_of_optimal_solutions", "i",      "CGAL_get_number_of_optimal_solutions", "./libcgal4gp.so");
-
-install("convex_hull_3",                   "mG",     "CGAL_convex_hull_3",                   "./libcgal4gp.so");
 ```
 
 Code cleanup done with help of these two Makefile targets:  
