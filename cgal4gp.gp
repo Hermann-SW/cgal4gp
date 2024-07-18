@@ -8,3 +8,5 @@ install("get_width_coefficients",          "v&&&&&", "CGAL_get_width_coefficient
 install("get_build_direction",             "m",      "CGAL_get_build_direction",             "./libcgal4gp.so");
 install("get_all_build_directions",        "v&",     "CGAL_get_all_build_directions",        "./libcgal4gp.so");
 install("get_number_of_optimal_solutions", "i",      "CGAL_get_number_of_optimal_solutions", "./libcgal4gp.so");
+
+install("convex_hull_3",                   "mG",     "CGAL_convex_hull_3",                   "./libcgal4gp.so");
