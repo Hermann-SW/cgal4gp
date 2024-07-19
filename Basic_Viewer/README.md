@@ -75,7 +75,16 @@ hermann@7600x:~/cgal4gp/Basic_Viewer$
 This is the first display of convex hull of 6 points:  
 ![../res/Basic_viewer.demo.png](../res/Basic_viewer.demo.png)
 
-The CGAL viewer is libQGlViewer (forked from version 2.7.0). Pressing <kbd>h</kbd> shows extensive help window with more than 50 key and mouse possibilities to control the display. Below screenshots were takes after pressing <kbd>m</kbd> which turns off monochrome display. With ```CGAL_draw()``` the convex hull triangulation is displayed:   
+The CGAL viewer is libQGlViewer (forked from version 2.7.0). Pressing <kbd>h</kbd> shows extensive help window with more than 50 key and mouse possibilities to control the display. Below screenshots were takes after pressing <kbd>m</kbd> which turns off monochrome display. 
+
+The lattice sphere points for n=65 are created by these 3 lines in [demo.gp](demo.gp}:  
+```
+n=5*13;
+s=sqrtint(n);
+points=[[x,y,z]|x<-[-s..s];y<-[-s..s];z<-[-s..s],x^2+y^2+z^2==n];
+```
+
+With ```CGAL_draw()``` the convex hull triangulation is displayed:   
 ![../res/Basic_viewer.demo.draw.png](../res/Basic_viewer.demo.draw.png)
 
 Much nicer is display of same lattice sphere with ```CGAL_draw_nef()```that displays the faces only, leaves out the edges inside faces of the convex hull triangulation:  
