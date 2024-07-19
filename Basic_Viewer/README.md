@@ -1,6 +1,6 @@
 ## Basic Viewer
 
-See [prerequisites](#prerequisites) and [build](#build) section — work in progress ...
+See [prerequisites](#prerequisites), [build](#build) and [demo](#demo) sections — work in progress ...
 
 
 Below few PARI/GP commands
@@ -48,3 +48,35 @@ Unlike building in ```cgal4gp``` base directory, here ```cmake``` based build is
 
 Work in progress ...
 
+### demo
+
+At the end of ```./build+run``` or via ```gp -q < demo.gp``` the demo gets executed. First the known convex hull of 6 points is displayed. Then lattice sphere for n=65 gets displayed, also with ```CGAL_draw()``` which shows the triangulation created with ```CGAL_convex_hull_3()``` for 96 points. Finally same lattice sphere is displayed with ```CGAL_draw_nef()``` which does not display triangulation edges inside a lattice sphere face, but just the faces. Here is the terminal output of the demo:  
+```
+...
+[100%] Built target Qt
+CGAL_convex_hull_3([[1, 0, 0], [2, -1, 0], [2, 0, -1], [3, 0, 0], [2, 1, 0], [2, 0, 1]])
+[6, 12, 24, 8]
+
+CGAL_draw()
+Using OpenGL context 4.6 GL
+
+#points=96
+CGAL_convex_hull_3(points)
+[96, 282, 564, 188]
+
+CGAL_draw()
+Using OpenGL context 4.6 GL
+
+CGAL_draw_nef()
+Using OpenGL context 4.6 GL
+hermann@7600x:~/cgal4gp/Basic_Viewer$ 
+```
+
+This is the first display of convex hull of 6 points:  
+![../res/Basic_viewer.demo.png](../res/Basic_viewer.demo.png)
+
+The CGAL viewer is libQGlViewer (forked from version 2.7.0). Pressing <kbd>h</kbd> shows extensive help window with more than 50 key and mouse possibilities to control the display. Below screenshots were takes after pressing <kbd>m</kbd> which turns off monochrome display. With ```CGAL_draw()``` the convex hull triangulation is displayed:   
+![../res/Basic_viewer.demo.draw.png](../res/Basic_viewer.demo.draw.png)
+
+Much nicer is display of same lattice sphere with ```CGAL_draw_nef()```that displays the faces only, leaves out the edges inside faces of the convex hull triangulation:  
+![../res/Basic_viewer.demo.draw_nef.png](../res/Basic_viewer.demo.draw_nef.png)

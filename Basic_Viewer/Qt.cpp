@@ -1,24 +1,13 @@
-#include <pari/pari.h>
-
-#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+#include <CGAL/Exact_predicates_exact_constructions_kernel.h>
+#include <CGAL/Nef_polyhedron_3.h>
 #include <CGAL/Polyhedron_3.h>
 #include <CGAL/convex_hull_3.h>
+#include <CGAL/draw_nef_3.h>
 #include <CGAL/draw_polyhedron.h>
+
+#include <pari/pari.h>
+
 #include <vector>
-
-typedef CGAL::Exact_predicates_inexact_constructions_kernel  __K;
-typedef CGAL::Polyhedron_3<__K>                              __Polyhedron_3;
-typedef __K::Point_3                                         __Point_3;
-
-__Polyhedron_3 *__polyh = NULL;
-
-extern "C"
-void
-draw()
-{
-  assert(__polyh);
-  CGAL::draw(*__polyh);
-}
 
 // from 2007 posting: https://pari.math.u-bordeaux.fr/archives/pari-users-0712/msg00001.html
 #define LIMBS(x)  (reinterpret_cast<mp_limb_t *>((x)+2))
@@ -40,6 +29,32 @@ mpz2GEN(mpz_t X) {
 }
 
 
+typedef CGAL::Exact_predicates_exact_constructions_kernel  __K;
+typedef CGAL::Nef_polyhedron_3<__K>                        __Nef_polyhedron;
+typedef CGAL::Polyhedron_3<__K>                            __Polyhedron_3;
+typedef __K::Point_3                                       __Point_3;
+
+
+__Polyhedron_3 *__polyh = NULL;
+__Nef_polyhedron *__nefph = NULL;
+
+extern "C"
+void
+draw() {
+    assert(__polyh);
+    CGAL::draw(*__polyh);
+}
+
+extern "C"
+void
+draw_nef() {
+    if (!__nefph) {
+        assert(__polyh);
+        __nefph = new __Nef_polyhedron(*__polyh);
+    }
+    CGAL::draw(*__nefph);
+}
+
 extern "C"
 GEN
 convex_hull_3(GEN points) {
@@ -55,21 +70,24 @@ convex_hull_3(GEN points) {
         pts.push_back(__Point_3(mpz_get_si(x), mpz_get_si(y), mpz_get_si(z)));
     }
 
-  delete __polyh;
-  __polyh = new __Polyhedron_3();
-  CGAL::convex_hull_3(pts.begin(), pts.end(), *__polyh);
+    delete __polyh;
+    __polyh = new __Polyhedron_3();
+    delete __nefph;
+    __nefph = NULL;
 
-  GEN ret = cgetg(1, t_VEC);
-  mpz_t a;
-  mpz_init(a);
-  mpz_set_ui(a, num_vertices(*__polyh));
-  ret = vec_append(ret, mpz2GEN(a));
-  mpz_set_ui(a, num_edges(*__polyh));
-  ret = vec_append(ret, mpz2GEN(a));
-  mpz_set_ui(a, num_halfedges(*__polyh));
-  ret = vec_append(ret, mpz2GEN(a));
-  mpz_set_ui(a, num_faces(*__polyh));
-  ret = vec_append(ret, mpz2GEN(a));
+    CGAL::convex_hull_3(pts.begin(), pts.end(), *__polyh);
 
-  return ret;
+    GEN ret = cgetg(1, t_VEC);
+    mpz_t a;
+    mpz_init(a);
+    mpz_set_ui(a, num_vertices(*__polyh));
+    ret = vec_append(ret, mpz2GEN(a));
+    mpz_set_ui(a, num_edges(*__polyh));
+    ret = vec_append(ret, mpz2GEN(a));
+    mpz_set_ui(a, num_halfedges(*__polyh));
+    ret = vec_append(ret, mpz2GEN(a));
+    mpz_set_ui(a, num_faces(*__polyh));
+    ret = vec_append(ret, mpz2GEN(a));
+
+    return ret;
 }
