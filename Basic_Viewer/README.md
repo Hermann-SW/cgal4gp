@@ -1,6 +1,6 @@
 ## Basic Viewer
 
-See [prerequisites](#prerequisites), [build](#build) and [demo](#demo) sections — work in progress ...
+See [prerequisites](#prerequisites), [build](#build), [demo](#demo) and [Basic Viewer help](#basic-viewer-help) sections — work in progress ...
 
 
 Below few PARI/GP commands
@@ -75,7 +75,7 @@ hermann@7600x:~/cgal4gp/Basic_Viewer$
 This is the first display of convex hull of 6 points:  
 ![../res/Basic_viewer.demo.png](../res/Basic_viewer.demo.png)
 
-The CGAL viewer is libQGlViewer (forked from version 2.7.0). Pressing <kbd>h</kbd> shows extensive help window with more than 50 key and mouse possibilities to control the display. Below screenshots were takes after pressing <kbd>m</kbd> which turns off monochrome display. 
+The CGAL viewer is libQGlViewer (forked from version 2.7.0). See section [Basic Viewer help](#basic-viewer-help) for details. Below screenshots were taken after pressing <kbd>m</kbd> key which turns off monochrome display. 
 
 The lattice sphere points for n=65 are created by these 3 lines in [demo.gp](demo.gp):  
 ```
