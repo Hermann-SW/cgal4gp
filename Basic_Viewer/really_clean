@@ -1,4 +1,5 @@
 #/bin/bash
 make clean
 rm -f Makefile CMakeCache.txt cmake_install.cmake
+rm -f ../cgal.Basic_Viewer.4.gp ../libcgal.Basic_Viewer.4gp.so
 rm -rf CMakeFiles __

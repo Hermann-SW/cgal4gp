@@ -1,4 +1,6 @@
 #/bin/bash
 cmake -DCMAKE_BUILD_TYPE=Release .
 make
+ln -s Basic_Viewer/cgal.Basic_Viewer.4.gp ../cgal.Basic_Viewer.4.gp
+ln -s Basic_Viewer/libcgal.Basic_Viewer.4gp.so ../libcgal.Basic_Viewer.4gp.so
 gp -q < demo.gp
