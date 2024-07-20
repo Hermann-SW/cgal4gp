@@ -83,7 +83,8 @@ points=[[x,y,z]|x<-[-s..s];y<-[-s..s];z<-[-s..s],x^2+y^2+z^2==n];
 With ```CGAL_draw()``` the convex hull triangulation is displayed:   
 ![../res/Basic_viewer.demo.draw.png](../res/Basic_viewer.demo.draw.png)
 
-Much nicer is display of same lattice sphere with ```CGAL_draw_nef()```that displays the faces only, leaves out the edges inside faces of the convex hull triangulation:  
+Much nicer is display of same lattice sphere with ```CGAL_draw_nef()```that displays the faces only,  
+and leaves out the edges inside faces of the convex hull triangulation:  
 ![../res/Basic_viewer.demo.draw_nef.png](../res/Basic_viewer.demo.draw_nef.png)
 
 ### Basic Viewer help
