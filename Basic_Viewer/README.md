@@ -1,6 +1,6 @@
 ## Basic Viewer
 
-See [prerequisites](#prerequisites), [build](#build), [demo](#demo) and [Basic Viewer help](#basic-viewer-help) sections — work in progress ...
+See [prerequisites](#prerequisites), [build](#build), [demo](#demo) and [Basic Viewer help](#basic-viewer-help) sections.
 
 
 Below few PARI/GP commands
