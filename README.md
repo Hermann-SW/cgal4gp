@@ -37,7 +37,7 @@ $
 
 [simple.gp](simple.gp)  
 ```
-read("cgal4gp.gp");
+read("cgal4.gp");
 
 points=[[1,0,0],[2,-1,0],[2,0,-1],[3,0,0],[2,1,0],[2,0,1]];
 
@@ -74,7 +74,7 @@ print("workaround(all build directions): ", Set([d/gcd(d)*if(d[1]<0,-1,1) | d<-d
 CGAL doc on pointset width related functions, with detailed problem description:  
 https://doc.cgal.org/latest/Polytope_distance_d/classCGAL_1_1Width__3.html  
   
-[cgal4gp.gp](cgal4gp.gp)
+[cgal4.gp](cgal4.gp)
 ```
 \\ https://doc.cgal.org/latest/Polytope_distance_d/classCGAL_1_1Width__3.html
 \\
