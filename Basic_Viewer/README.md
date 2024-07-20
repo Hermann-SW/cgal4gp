@@ -92,6 +92,8 @@ and leaves out the edges inside faces of the convex hull triangulation:
 Pressing <kbd>h</kbd> key opens help window.  
 That has details of more than 50 key and mouse interactions with the viewer.
 
+The fastest way to close a Basic Viewer window is to press <kbd>CTRL+Q</kbd>.
+
 Pressing <kbd>Alt</kbd>+<kbd>Fx</kbd> remembers a camera position.  
 After doing that repeatedly, you can playback with <kbd>Fx</kbd> key:  
 ![../res/Alt_Fx.camera_tour.gif](../res/Alt_Fx.camera_tour.gif)  
