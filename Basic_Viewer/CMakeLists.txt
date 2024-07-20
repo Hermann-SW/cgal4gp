@@ -4,14 +4,12 @@ project(Basic_Viewer)
 
 add_compile_options(-O3 -ffp-contract=off -fno-strict-aliasing -fPIC -std=c++14)
 
-add_link_options(-shared -Wl,-shared)    # this makes "executable" a shared lib
-
 find_package(CGAL REQUIRED OPTIONAL_COMPONENTS Qt5)
 
 find_package(CGAL REQUIRED)
 
-create_single_source_cgal_program("Qt.cpp")
+add_library(cgal.Basic_Viewer.4gp SHARED "cgal.Basic_Viewer.4gp.cpp")
 
 if(CGAL_Qt5_FOUND)
-  target_link_libraries(Qt PUBLIC CGAL::CGAL_Basic_viewer)
+  target_link_libraries(cgal.Basic_Viewer.4gp PUBLIC CGAL::CGAL_Basic_viewer)
 endif()
