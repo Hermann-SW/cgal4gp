@@ -97,5 +97,6 @@ That has details of more than 50 key and mouse interactions with the viewer.
 
 Pressing <kbd>Alt</kbd>+<kbd>Fx</kbd> remembers a camera position.  
 After doing that repeatedly, you can playback with <kbd>Fx</kbd> key:  
-
-![../res/Alt_Fx.camera_tour.gif](../res/Alt_Fx.camera_tour.gif)
+![../res/Alt_Fx.camera_tour.gif](../res/Alt_Fx.camera_tour.gif)  
+Created with this CGAL example:  
+https://github.com/CGAL/cgal/blob/master/Nef_3/examples/Nef_3/draw_nef_3.cpp
