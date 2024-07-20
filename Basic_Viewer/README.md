@@ -89,3 +89,12 @@ With ```CGAL_draw()``` the convex hull triangulation is displayed:
 
 Much nicer is display of same lattice sphere with ```CGAL_draw_nef()```that displays the faces only, leaves out the edges inside faces of the convex hull triangulation:  
 ![../res/Basic_viewer.demo.draw_nef.png](../res/Basic_viewer.demo.draw_nef.png)
+
+### Basic Viewer help
+
+Pressing <kbd>h</kbd> openes help window.  
+That has details of more than 50 key and mouse interactions with the viewer.
+
+Pressing <kbd>Alt</kbd>+<kbd>Fx</kbd> remembers a camera position.  
+After doing that repeatedly, you can playback with <kbd>Fx<kbd>:  
+![../res/Alt_Fx.camera_tour.gif](../res/Alt_Fx.camera_tour.gif)
