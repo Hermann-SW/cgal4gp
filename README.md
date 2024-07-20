@@ -8,7 +8,7 @@ See CGAL [Basic_Viewer](Basic_Viewer/) opened by ```CGAL_draw()``` in PARI/GP, a
 [JSCAD app link](https://jscad.app/#data:application/gzip;base64,H4sIAMXYkmYAA1XPPWvDMBAG4F2/4rbYIFt206lQKHTp2N14UJWLo2LpVH20ocb/vYpqQiI06F4exHtCwClGF56EmHQ8pY9WkRFv6I20tgk/Qk1yfpwcE4IpsiHCZ1DyAM/g8Stpj9XupSTC0AFnbaddvcEFJiSzhzXjQtrLjNFrDFeiaCavf/FGlSgwdkxWRU0WjNS2ctJLE2pYGICLIeth6Dl0+Y4chgcOzWXc3jlu+pFnu51hf2fvaT+OLFOPMXl7rVQNHe94z/M//5u0R0/mnbSN4ZXsN56rXKSu2cpYXj7N2OLZkS/lltIaVvYH5sr/umEBAAA=) illustrating the demo (left) and PARI/GP CGAL Basic Viewer demo animation:  
 <img align=top src="res/simple.gp.png"> <img src="res/Basic_Viewer.demo.anim.gif">  
 
-Vertical prototype, now with 7 functions from CGAL:
+Vertical prototype, now with 7 point set width related functions from CGAL:
 ```
 $ make clean
 rm -f *.o libcgal4gp.so
