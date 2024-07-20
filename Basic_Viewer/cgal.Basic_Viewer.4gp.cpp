@@ -91,3 +91,24 @@ convex_hull_3(GEN points) {
 
     return ret;
 }
+
+extern "C"
+void
+make_hexahedron() {
+    delete __polyh;
+    __polyh = new __Polyhedron_3();
+    delete __nefph;
+    __nefph = NULL;
+
+    CGAL::make_hexahedron(
+        __Point_3(-0.5,-0.5,-0.5),
+        __Point_3(0.5,-0.5,-0.5),
+        __Point_3(0.5,0.5,-0.5),
+        __Point_3(-0.5,0.5,-0.5),
+        __Point_3(-0.5,0.5,0.5),
+        __Point_3(-0.5,-0.5,0.5),
+        __Point_3(0.5,-0.5,0.5),
+        __Point_3(0.5,0.5,0.5),
+        *__polyh
+    );
+}
