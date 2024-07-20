@@ -1,4 +1,4 @@
-read("cgal4gp.gp");
+read("cgal4.gp");
 
 assert(b,s)=if(!(b), error(Str(s)));
 
