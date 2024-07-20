@@ -77,7 +77,7 @@ This is the first display of convex hull of 6 points:
 
 The CGAL viewer is libQGlViewer (forked from version 2.7.0). Pressing <kbd>h</kbd> shows extensive help window with more than 50 key and mouse possibilities to control the display. Below screenshots were takes after pressing <kbd>m</kbd> which turns off monochrome display. 
 
-The lattice sphere points for n=65 are created by these 3 lines in [demo.gp](demo.gp}:  
+The lattice sphere points for n=65 are created by these 3 lines in [demo.gp](demo.gp):  
 ```
 n=5*13;
 s=sqrtint(n);
