@@ -39,14 +39,10 @@ source ~/.bashrc
 sudo apt install qtcreator qtbase5-dev qt5-qmake
 ```
 
-Work in progress ...
-
 ### build
 
 [really_clean](really_clean) does what it says, [build+run](build+run) as well.  
-Unlike building in ```cgal4gp``` base directory, here ```cmake``` based build is needed (for the ```Qt``` stuff).
-
-Work in progress ...
+Unlike building in ```cgal4gp``` base directory, here ```cmake``` based build is needed (for the ```Qt``` stuff); therefore install cmake package as well.
 
 ### demo
 

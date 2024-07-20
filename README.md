@@ -101,7 +101,8 @@ $
 
 ## prerequisites
 
-These libs need to be installed:  
+These packages need to be installed:  
+- build-essential
 - libpari-dev
 - libgmp-dev
 - libcgal-dev (*)
