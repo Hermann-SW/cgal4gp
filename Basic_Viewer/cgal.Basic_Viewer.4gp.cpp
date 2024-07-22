@@ -46,18 +46,18 @@ void draw_timeout(GEN ms, bool donef = false) {
     if (ims < 0) { if (donef) CGAL::draw(*__nefph);
                    else       CGAL::draw(*__polyh);
     } else {
-      if (donef) { if (!__nefph) {
-                       assert(__polyh);
-                       __nefph = new __Nef_polyhedron(*__polyh);
-                   }
-      } else { assert(__polyh);
-      }
-      pid_t pid = fork();
-             if (pid == -1) { exit(1);
-      } else if  (pid == 0) { if (donef) CGAL::draw(*__nefph);
-                              else       CGAL::draw(*__polyh);
-      } else if   (pid > 0) { usleep(1000*ims); kill(pid, SIGKILL);
-      }
+        if (donef) { if (!__nefph) {
+                         assert(__polyh);
+                         __nefph = new __Nef_polyhedron(*__polyh);
+                     }
+        } else { assert(__polyh);
+        }
+        pid_t pid = fork();
+               if (pid == -1) { exit(1);
+        } else if  (pid == 0) { if (donef) CGAL::draw(*__nefph);
+                                else       CGAL::draw(*__polyh);
+        } else if   (pid > 0) { usleep(1000*ims); kill(pid, SIGKILL);
+        }
     }
 }
 
