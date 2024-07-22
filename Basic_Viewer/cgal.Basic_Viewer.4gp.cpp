@@ -38,40 +38,39 @@ typedef __K::Point_3                                       __Point_3;
 __Polyhedron_3 *__polyh = NULL;
 __Nef_polyhedron *__nefph = NULL;
 
-void draw_timeout(int ms, bool donef=false) {
-    pid_t pid = fork();
-           if (pid == -1) { exit(1);
-    } else if  (pid == 0) { if (donef) CGAL::draw(*__nefph);
-                            else       CGAL::draw(*__polyh);
-    } else if   (pid > 0) { usleep(1000*ms); kill(pid, SIGKILL);
+void draw_timeout(GEN ms, bool donef = false) {
+    mpz_t zms;
+    mpz_init(zms);
+    GEN2mpz(zms, ms);
+    int ims = mpz_get_si(zms);
+    if (ims < 0) { if (donef) CGAL::draw(*__nefph);
+                   else       CGAL::draw(*__polyh);
+    } else {
+      if (donef) { if (!__nefph) {
+                       assert(__polyh);
+                       __nefph = new __Nef_polyhedron(*__polyh);
+                   }
+      } else { assert(__polyh);
+      }
+      pid_t pid = fork();
+             if (pid == -1) { exit(1);
+      } else if  (pid == 0) { if (donef) CGAL::draw(*__nefph);
+                              else       CGAL::draw(*__polyh);
+      } else if   (pid > 0) { usleep(1000*ims); kill(pid, SIGKILL);
+      }
     }
 }
 
 extern "C"
 void
 draw(GEN ms) {
-    assert(__polyh);
-    mpz_t zms;
-    mpz_init(zms);
-    GEN2mpz(zms, ms);
-    if (mpz_get_si(zms) < 0) { CGAL::draw(*__polyh);
-    } else                   { draw_timeout(mpz_get_si(zms)); 
-    }
+    draw_timeout(ms);
 }
 
 extern "C"
 void
 draw_nef(GEN ms) {
-    if (!__nefph) {
-        assert(__polyh);
-        __nefph = new __Nef_polyhedron(*__polyh);
-    }
-    mpz_t zms;
-    mpz_init(zms);
-    GEN2mpz(zms, ms);
-    if (mpz_get_si(zms) < 0) { CGAL::draw(*__nefph);
-    } else                   { draw_timeout(mpz_get_si(zms), true); 
-    }
+    draw_timeout(ms, true);
 }
 
 extern "C"
@@ -120,14 +119,13 @@ make_hexahedron() {
     __nefph = NULL;
 
     CGAL::make_hexahedron(
-        __Point_3(-0.5,-0.5,-0.5),
-        __Point_3(0.5,-0.5,-0.5),
-        __Point_3(0.5,0.5,-0.5),
-        __Point_3(-0.5,0.5,-0.5),
-        __Point_3(-0.5,0.5,0.5),
-        __Point_3(-0.5,-0.5,0.5),
-        __Point_3(0.5,-0.5,0.5),
-        __Point_3(0.5,0.5,0.5),
-        *__polyh
-    );
+        __Point_3(-0.5, -0.5, -0.5),
+        __Point_3(0.5,  -0.5, -0.5),
+        __Point_3(0.5,   0.5, -0.5),
+        __Point_3(-0.5,  0.5, -0.5),
+        __Point_3(-0.5,  0.5, 0.5),
+        __Point_3(-0.5, -0.5, 0.5),
+        __Point_3(0.5,  -0.5, 0.5),
+        __Point_3(0.5,   0.5, 0.5),
+        *__polyh);
 }

@@ -87,6 +87,9 @@ Much nicer is display of same lattice sphere with ```CGAL_draw_nef()```that disp
 and leaves out the edges inside faces of the convex hull triangulation:  
 ![../res/Basic_viewer.demo.draw_nef.png](../res/Basic_viewer.demo.draw_nef.png)
 
+Despite the fact that ```CGAL::draw()``` does not allow for timeouts, ```CGAL_draw()``` and ```CGAL_draw_nef()``` do allow to specify timeout for drawing window (```-1``` means no timeout). Here is new demo.gp with timeouts:  
+![../res/demo.gp.anim.gif](../res/demo.gp.anim.gif)
+
 ### Basic Viewer help
 
 Pressing <kbd>h</kbd> key opens help window.  
