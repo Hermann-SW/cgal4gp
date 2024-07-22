@@ -38,21 +38,40 @@ typedef __K::Point_3                                       __Point_3;
 __Polyhedron_3 *__polyh = NULL;
 __Nef_polyhedron *__nefph = NULL;
 
-extern "C"
-void
-draw() {
-    assert(__polyh);
-    CGAL::draw(*__polyh);
+void draw_timeout(int ms, bool donef=false) {
+    pid_t pid = fork();
+           if (pid == -1) { exit(1);
+    } else if  (pid == 0) { if (donef) CGAL::draw(*__nefph);
+                            else       CGAL::draw(*__polyh);
+    } else if   (pid > 0) { usleep(1000*ms); kill(pid, SIGKILL);
+    }
 }
 
 extern "C"
 void
-draw_nef() {
+draw(GEN ms) {
+    assert(__polyh);
+    mpz_t zms;
+    mpz_init(zms);
+    GEN2mpz(zms, ms);
+    if (mpz_get_si(zms) < 0) { CGAL::draw(*__polyh);
+    } else                   { draw_timeout(mpz_get_si(zms)); 
+    }
+}
+
+extern "C"
+void
+draw_nef(GEN ms) {
     if (!__nefph) {
         assert(__polyh);
         __nefph = new __Nef_polyhedron(*__polyh);
     }
-    CGAL::draw(*__nefph);
+    mpz_t zms;
+    mpz_init(zms);
+    GEN2mpz(zms, ms);
+    if (mpz_get_si(zms) < 0) { CGAL::draw(*__nefph);
+    } else                   { draw_timeout(mpz_get_si(zms), true); 
+    }
 }
 
 extern "C"

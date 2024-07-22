@@ -23,6 +23,9 @@ ALL = $(DYN)
 all: $(ALL)
 	gp -q < simple.gp
 
+viewer:
+	cd Basic_Viewer && ./build+run
+
 dynlib: $(DYN)
 
 $(DYN): $(OBJS)

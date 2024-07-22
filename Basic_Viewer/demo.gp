@@ -1,10 +1,18 @@
 read("cgal.Basic_Viewer.4.gp");
+
+print("CGAL_make_hexahedron()");
+CGAL_make_hexahedron();
+print();
+print("CGAL_draw(1200)");
+CGAL_draw(1200)
+print();
+
 points=[[1, 0, 0], [2, -1, 0], [2, 0, -1], [3, 0, 0], [2, 1, 0], [2, 0, 1]];
 print("CGAL_convex_hull_3(",points,")");
 print(CGAL_convex_hull_3(points));
 print();
 print("CGAL_draw()");
-CGAL_draw()
+CGAL_draw(1200)
 print();
 
 n=5*13;
@@ -15,7 +23,7 @@ print("CGAL_convex_hull_3(points)");
 print(CGAL_convex_hull_3(points));
 print();
 print("CGAL_draw()");
-CGAL_draw()
+CGAL_draw(1200)
 print();
 print("CGAL_draw_nef()");
-CGAL_draw_nef()
+CGAL_draw_nef(2500)
