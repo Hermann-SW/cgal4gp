@@ -7,12 +7,12 @@ Below few PARI/GP commands
 - determine convex hull of ```points``` (returns ```#vertices```, ```#edges```, ```#halfedges``` and ```#faces```)
 - and then display that in CGAL Basic Viewer  
 ```
-pi@raspberrypi5:~/qh $ gp -q BVcgal4.gp
+hermann@7600x:~/cgal4gp/Basic_Viewer$ gp -q cgal.Basic_Viewer.4.gp 
 ? points=[[1, 0, 0], [2, -1, 0], [2, 0, -1], [3, 0, 0], [2, 1, 0], [2, 0, 1]];
 ? CGAL_convex_hull_3(points)
 [6, 12, 24, 8]
-? CGAL_draw()
-Using OpenGL context 4.5 GL
+? CGAL_draw(-1)
+Using OpenGL context 4.6 GL
 ```  
 <img src="../res/Basic_Viewer.demo.anim.gif">
 
