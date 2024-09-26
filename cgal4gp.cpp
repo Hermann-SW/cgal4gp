@@ -201,7 +201,7 @@ extern "C"
 int
 get_number_of_optimal_solutions() {
     assert(_simplex != NULL);
-    if (resp.size() == 0)  get_all_build_directions(NULL);
+    get_all_build_directions(NULL);
     return resp.size();
 }
 
