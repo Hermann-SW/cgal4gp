@@ -28,5 +28,3 @@ dir
 
 print("- get_number_of_optimal_solutions()");
 CGAL_get_number_of_optimal_solutions()
-
-print("workaround(all build directions): ", Set([d/gcd(d)*if(d[1]<0,-1,1) | d<-dir]));

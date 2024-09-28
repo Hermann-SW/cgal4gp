@@ -47,6 +47,8 @@ mkfrac_or_int(GEN a, GEN b) {
 
 _Width *_simplex = NULL;
 
+std::vector<_Vector_3> resp;
+
 extern "C"
 void
 Width(GEN points) {
@@ -139,10 +141,44 @@ get_all_build_directions(GEN *dir) {
     assert(_simplex != NULL);
     _simplex->get_all_build_directions(_dir);
 
+    // workaround
+    for (std::vector<_Vector_3>::iterator it = _dir.begin();
+        it != _dir.end(); ++ it)
+	    if (it->hx()<0 || (it->hx()==0 && it->hy()<0)
+	                   || (it->hx()==0 && it->hy()==0 && it->hz()<0))
+                *it = - *it;
+
+    struct
+    {
+        bool operator()(_Vector_3 a, _Vector_3 b) const {
+            if (a.hx() != b.hx())  return a.hx() < b.hx();
+            if (a.hy() != b.hy())  return a.hy() < b.hy();
+            return a.hz() < b.hz();
+        }
+    }
+    customLess;
+
+    struct
+    {
+        bool operator()(_Vector_3 a, _Vector_3 b) const {
+            return a.hx()==b.hx() && a.hy()==b.hy() && a.hz()==b.hz();
+        }
+    }
+    customEqual;
+
+    std::sort(_dir.begin(), _dir.end(), customLess);
+
+    std::vector<_Vector_3> res(_dir.begin(),
+        std::unique(_dir.begin(), _dir.end(), customEqual));
+
+    resp = res;
+
+    if (dir == NULL)  return;
+
     GEN ret = cgetg(1, t_VEC);
 
-    for (std::vector<_Vector_3>::iterator it = _dir.begin();
-         it != _dir.end(); it++
+    for (std::vector<_Vector_3>::iterator it = res.begin();
+         it != res.end(); it++
     ) {
         ret = vec_append(
                   ret,
@@ -165,6 +201,7 @@ extern "C"
 int
 get_number_of_optimal_solutions() {
     assert(_simplex != NULL);
-    return _simplex->get_number_of_optimal_solutions();
+    get_all_build_directions(NULL);
+    return resp.size();
 }
 

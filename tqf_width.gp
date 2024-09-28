@@ -81,6 +81,6 @@ get_tqf(n,vstart)={
         print("build direction: ",CGAL_get_build_direction());
         print("optimal solutions: ",CGAL_get_number_of_optimal_solutions());
         CGAL_get_all_build_directions(dir);
-        print("workaround(all build directions): ", Set([d/gcd(d)*if(d[1]<0,-1,1) | d<-dir]));
+        print("all build directions: ", dir);
     )
 }
